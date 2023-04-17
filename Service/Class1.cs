@@ -1,4 +1,4 @@
-﻿namespace Service.Contracts
+﻿namespace Service
 {
     public class Class1
     {

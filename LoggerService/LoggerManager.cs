@@ -30,11 +30,5 @@ namespace LoggerService
         {
             _logger.Info(message);
         }
-
-
-
-
-
-
     }
 }

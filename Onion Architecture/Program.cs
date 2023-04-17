@@ -16,6 +16,7 @@ LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(),
 "/nlog.config"));
 ServiceExtensions.ConfigureLoggerService(builder.Services);
 ServiceExtensions.ConfigureRepositoryManager(builder.Services);
+ServiceExtensions.ConfigureServiceManager(builder.Services);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
