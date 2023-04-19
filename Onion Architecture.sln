@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Contracts", "Servic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service", "Service\Service.csproj", "{5F44768D-D25C-4E0D-A097-F7C43F01AB4D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Onion_Architecture.Presentation", "Presentation\Onion_Architecture.Presentation.csproj", "{D9E450E4-5DC3-40E3-9384-6E8A1920AB4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Onion_Architecture.Presentation", "Presentation\Onion_Architecture.Presentation.csproj", "{D9E450E4-5DC3-40E3-9384-6E8A1920AB4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{92931AF6-86C2-45E0-9CA0-EE8C23DBA1E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -91,6 +93,14 @@ Global
 		{D9E450E4-5DC3-40E3-9384-6E8A1920AB4B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D9E450E4-5DC3-40E3-9384-6E8A1920AB4B}.Release|x86.ActiveCfg = Release|Any CPU
 		{D9E450E4-5DC3-40E3-9384-6E8A1920AB4B}.Release|x86.Build.0 = Release|Any CPU
+		{92931AF6-86C2-45E0-9CA0-EE8C23DBA1E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92931AF6-86C2-45E0-9CA0-EE8C23DBA1E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92931AF6-86C2-45E0-9CA0-EE8C23DBA1E2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{92931AF6-86C2-45E0-9CA0-EE8C23DBA1E2}.Debug|x86.Build.0 = Debug|Any CPU
+		{92931AF6-86C2-45E0-9CA0-EE8C23DBA1E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92931AF6-86C2-45E0-9CA0-EE8C23DBA1E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92931AF6-86C2-45E0-9CA0-EE8C23DBA1E2}.Release|x86.ActiveCfg = Release|Any CPU
+		{92931AF6-86C2-45E0-9CA0-EE8C23DBA1E2}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

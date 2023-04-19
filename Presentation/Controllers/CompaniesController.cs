@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Entities.Models;
+using Microsoft.AspNetCore.Mvc;
 using Service.Contracts;
+using System.Net.Security;
 
 namespace Onion_Architecture.Presentation.Controllers
 {
@@ -16,15 +18,12 @@ namespace Onion_Architecture.Presentation.Controllers
             _service = service;
         }
 
-
         [HttpGet]
-
         public IActionResult GetCompanies()
         {
             try
             {
                 var companies = _service.CompanyService.GetAllCompanies(trackChanges:false);
-
                 return Ok(companies);
             }
             catch
@@ -32,11 +31,5 @@ namespace Onion_Architecture.Presentation.Controllers
                 return StatusCode(500, "internal server error");
             }
         }
-
-        
-
-
-
-
     }
 }
