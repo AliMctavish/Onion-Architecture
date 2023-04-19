@@ -15,5 +15,10 @@ namespace Repository
             
         }
 
+        public IEnumerable<Employee> GetAllEmployees(bool trackChanges)
+        {
+            return FindAll(trackChanges).OrderBy(e => e.Name).ToList();
+        }
+
     }
 }
