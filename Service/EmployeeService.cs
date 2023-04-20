@@ -1,6 +1,8 @@
 ﻿using Contracts;
 using Entities.Models;
+using Mapster;
 using Service.Contracts;
+using Shared.DataTransferObject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,18 +21,11 @@ namespace Service
             _loggerManager = loggerManager;
         }
 
-        public IEnumerable<Employee> GetAllEmployees(bool trackChanges)
+        public IEnumerable<EmployeeDto> GetAllEmployees(bool trackChanges)
         {
-            try
-            {
                 var employees = _repositoryManager.Employee.GetAllEmployees(trackChanges).OrderBy(e=>e.Name).ToList();
-                return employees;
-            }
-            catch (Exception ex)
-            {
-                _loggerManager.LogError($"something went wrong while excuting {GetAllEmployees} service method {ex}");
-                throw;
-            }
+                var employeesDto = employees.Adapt<List<EmployeeDto>>();
+                return employeesDto;
         }
 
     }

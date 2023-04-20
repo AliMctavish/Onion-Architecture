@@ -6,7 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Contracts;
 using Entities.Models;
+using Mapster;
 using Service.Contracts;
+using Shared.DataTransferObject;
 
 namespace Service
 {
@@ -21,18 +23,20 @@ namespace Service
             _loggerManager = loggerManager;
         }
 
-        public IEnumerable<Company> GetAllCompanies(bool trackChanges)
+        public IEnumerable<CompanyDto> GetAllCompanies(bool trackChanges)
         {
-            try
-            {
                 var companies = _repositoryManager.Company.GetAllCompanies(trackChanges);
-                return companies;
-            }
-            catch(Exception ex)
-            {
-                _loggerManager.LogError($"something went wrong with {nameof(GetAllCompanies)} service method {ex}" );
-                throw;
-            }
+                var companyDto = companies.Adapt<List<CompanyDto>>();
+                return companyDto;
+        }
+
+        public CompanyDto GetCompany(Guid companyId ,bool trackChanges)
+        {
+            var company = _repositoryManager.Company.GetCompany(companyId , trackChanges);
+
+            var companyDto = company.Adapt<CompanyDto>();
+
+            return companyDto;
         }
     }
 }
