@@ -1,5 +1,4 @@
 ﻿using Contracts;
-using Entities.Models;
 using Mapster;
 using Service.Contracts;
 using Shared.DataTransferObject;

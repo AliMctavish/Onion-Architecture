@@ -5,7 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using Contracts;
-using Entities.Models;
+using Entities.Exceptions;
 using Mapster;
 using Service.Contracts;
 using Shared.DataTransferObject;
@@ -34,7 +34,11 @@ namespace Service
         {
             var company = _repositoryManager.Company.GetCompany(companyId , trackChanges);
 
+            if (company is null)
+                throw new CompanyNotFoundException(companyId);
+    
             var companyDto = company.Adapt<CompanyDto>();
+
 
             return companyDto;
         }
