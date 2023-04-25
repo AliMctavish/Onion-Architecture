@@ -20,5 +20,12 @@ namespace Repository
             return FindAll(trackChanges).OrderBy(e => e.Name).ToList();
         }
 
+        public Employee GetEmployee(Guid id, bool trackChanges)
+        {
+            var employee = FindByCondition(e => e.Id.Equals(id), trackChanges).SingleOrDefault();
+            return employee;
+        }
+
+
     }
 }

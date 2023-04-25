@@ -1,4 +1,5 @@
 ﻿using Contracts;
+using Entities.Exceptions;
 using Mapster;
 using Service.Contracts;
 using Shared.DataTransferObject;
@@ -25,6 +26,18 @@ namespace Service
                 var employees = _repositoryManager.Employee.GetAllEmployees(trackChanges).OrderBy(e=>e.Name).ToList();
                 var employeesDto = employees.Adapt<List<EmployeeDto>>();
                 return employeesDto;
+        }
+
+        public EmployeeDto GetEmployee(Guid id,bool trackChanges)
+        {
+            var employee = _repositoryManager.Employee.GetEmployee(id, trackChanges);
+
+            if (employee is null)
+                throw new EmployeeNotFoundException(id);
+
+            var employeeDto = employee.Adapt<EmployeeDto>();
+
+            return employeeDto;
         }
 
     }
