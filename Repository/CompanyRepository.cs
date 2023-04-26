@@ -27,5 +27,11 @@ namespace Repository
         }
 
 
+        public void CreateCompany(Company company)
+        {
+            Create(company);
+        }
+
+
     }
 }

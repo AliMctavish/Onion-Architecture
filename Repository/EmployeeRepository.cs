@@ -13,7 +13,7 @@ namespace Repository
         public EmployeeRepository(RepositoryContext repositoryContext) : base(repositoryContext)
         {
             
-        }
+        } 
 
         public IEnumerable<Employee> GetAllEmployees(bool trackChanges)
         {
@@ -25,6 +25,13 @@ namespace Repository
             var employee = FindByCondition(e => e.Id.Equals(id), trackChanges).SingleOrDefault();
             return employee;
         }
+
+        public void CreateEmployee(Guid companyId , Employee employee)
+        {
+            employee.CompanyId = companyId;
+            Create(employee);
+        }
+
 
 
     }

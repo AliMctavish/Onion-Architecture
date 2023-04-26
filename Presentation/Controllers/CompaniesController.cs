@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Service.Contracts;
+using Shared.DataReponseDto;
 using System.Net.Security;
 
 namespace Onion_Architecture.Presentation.Controllers
@@ -24,11 +25,25 @@ namespace Onion_Architecture.Presentation.Controllers
                 return Ok(companies);
         }
 
-        [HttpGet("{id:guid}")]
+        [HttpGet("{id:guid}", Name = "companyById")]
         public IActionResult GetCompany(Guid id)
         {
             var company = _service.CompanyService.GetCompany(id , false);
             return Ok(company);
         }
+
+        [HttpPost]
+        public IActionResult CreateCompany([FromBody] CreateCompanyDto createCompany)
+        {
+            if (createCompany is null)
+                return BadRequest("company for creation dto object is null");
+
+
+            var result = _service.CompanyService.CreateCompany(createCompany);
+
+
+            return CreatedAtRoute("companyById" , new { id = result.Id } , result );
+        }
+
     }
 }

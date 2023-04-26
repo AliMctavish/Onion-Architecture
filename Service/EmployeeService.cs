@@ -1,8 +1,10 @@
 ﻿using Contracts;
 using Entities.Exceptions;
+using Entities.Models;
 using Mapster;
 using Service.Contracts;
 using Shared.DataTransferObject;
+using Shared.DataTransferObject.DataReponseDto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +40,25 @@ namespace Service
             var employeeDto = employee.Adapt<EmployeeDto>();
 
             return employeeDto;
+        }
+
+        public EmployeeDto CreateEmployee(Guid companyId ,CreateEmployeeDto employeeDto , bool trackChanges)
+        {
+            var company = _repositoryManager.Company.GetCompany(companyId, trackChanges);
+
+            if (company is null)
+                throw new CompanyNotFoundException(companyId);
+
+            var employee = employeeDto.Adapt<Employee>();    
+
+            _repositoryManager.Employee.CreateEmployee(companyId,employee);
+
+            _repositoryManager.Save();
+
+            var result = employee.Adapt<EmployeeDto>();
+
+            return result;
+
         }
 
     }

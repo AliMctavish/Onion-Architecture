@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Service.Contracts;
+using Shared.DataTransferObject;
+using Shared.DataTransferObject.DataReponseDto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,12 +28,23 @@ namespace Onion_Architecture.Presentation.Controllers
             return Ok(employees);
         }
 
-        [HttpGet("{id:guid}")]
+        [HttpGet("{id:guid}" , Name = "employeeById")]
         public IActionResult GetEmployee(Guid id)
         {
             var employee = _serviceManager.EmployeeService.GetEmployee(id, false);
 
             return Ok(employee);
+        }
+
+        [HttpPost]
+        public IActionResult CreateEmployee(Guid companyId , CreateEmployeeDto createEmployeeDto)
+        {
+            if (createEmployeeDto is null)
+                return BadRequest("please make sure that you are sane !");
+
+            _serviceManager.EmployeeService.CreateEmployee(companyId, createEmployeeDto, false);
+
+            return Ok();
         }
     }
 }

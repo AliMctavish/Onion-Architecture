@@ -1,4 +1,5 @@
 ﻿using Shared.DataTransferObject;
+using Shared.DataTransferObject.DataReponseDto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,9 @@ namespace Service.Contracts
         IEnumerable<EmployeeDto> GetAllEmployees(bool trackChanges);
 
         EmployeeDto GetEmployee(Guid id , bool trackChanges);
+
+        EmployeeDto CreateEmployee(Guid companyId ,CreateEmployeeDto employeeDto , bool trackChanges);
+
     }
 }
+

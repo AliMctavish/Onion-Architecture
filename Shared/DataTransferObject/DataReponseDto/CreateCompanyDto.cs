@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shared.DataTransferObject
+namespace Shared.DataReponseDto
 {
-    public record CompanyDto(Guid Id , string Name , string Address , string Country);
+    public record CreateCompanyDto(string Name , string Address , string Country);
 }
-
