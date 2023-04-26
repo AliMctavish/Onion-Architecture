@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Onion_Architecture.Presentation.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/companies/{companyId}/employees")]
     [ApiController]
     public class EmployeesController : ControllerBase
     {

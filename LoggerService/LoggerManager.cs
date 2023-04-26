@@ -10,7 +10,6 @@ namespace LoggerService
         {
 
         }
-
         public void LogDebug(string message)
         {
             _logger.Debug(message);
