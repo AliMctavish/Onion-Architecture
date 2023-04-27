@@ -3,11 +3,12 @@ using Entities.Exceptions;
 using Entities.Models;
 using Mapster;
 using Service.Contracts;
-using Shared.DataTransferObject;
 using Shared.DataTransferObject.DataReponseDto;
+using Shared.DataTransferObject.DataRequestDto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,6 +18,7 @@ namespace Service
     {
         private readonly IRepositoryManager _repositoryManager;
         private readonly ILoggerManager _loggerManager;
+
         public EmployeeService(IRepositoryManager repositoryManager, ILoggerManager loggerManager)
         {
             _repositoryManager = repositoryManager;
@@ -42,9 +44,11 @@ namespace Service
             return employeeDto;
         }
 
+
         public EmployeeDto CreateEmployee(Guid companyId ,CreateEmployeeDto employeeDto , bool trackChanges)
         {
             var company = _repositoryManager.Company.GetCompany(companyId, trackChanges);
+
 
             if (company is null)
                 throw new CompanyNotFoundException(companyId);

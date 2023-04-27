@@ -1,5 +1,5 @@
-﻿using Shared.DataTransferObject;
-using Shared.DataTransferObject.DataReponseDto;
+﻿using Shared.DataTransferObject.DataReponseDto;
+using Shared.DataTransferObject.DataRequestDto;
 using System;
 using System.Collections.Generic;
 using System.Linq;

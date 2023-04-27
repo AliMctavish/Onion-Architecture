@@ -10,7 +10,7 @@ using Entities.Models;
 using Mapster;
 using Service.Contracts;
 using Shared.DataReponseDto;
-using Shared.DataTransferObject;
+using Shared.DataTransferObject.DataRequestDto;
 
 namespace Service
 {

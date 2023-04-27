@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Contracts;
+using Entities.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Repository
@@ -25,6 +26,7 @@ namespace Repository
         .Where(expression);
         public void Create(T entity)
         {
+
             RepositoryContext.Set<T>().Add(entity);
         }
         public void Update(T entity)
