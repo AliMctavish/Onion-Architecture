@@ -21,6 +21,7 @@ namespace Onion_Architecture.Extentions
         {
             services.AddScoped<IServiceManager, ServiceManager>();
         }
+
         public static void ConfigureSqlContext(this IServiceCollection services,
             IConfiguration configuration) =>
             services.AddDbContext<RepositoryContext>(opts =>

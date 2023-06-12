@@ -31,8 +31,5 @@ namespace Repository
             employee.CompanyId = companyId;
             Create(employee);
         }
-
-
-
     }
 }

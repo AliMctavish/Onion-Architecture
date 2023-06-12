@@ -18,7 +18,5 @@ namespace Repository
 
         DbSet<Company>? companies { get; set; }
         DbSet<Employee>? employees { get; set; }
-
-
     }
 }

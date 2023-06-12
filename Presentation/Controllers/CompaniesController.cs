@@ -2,6 +2,8 @@
 using Service.Contracts;
 using Shared.DataReponseDto;
 using System.Net.Security;
+using Application;
+using MediatR;
 
 namespace Onion_Architecture.Presentation.Controllers
 {
@@ -9,9 +11,13 @@ namespace Onion_Architecture.Presentation.Controllers
     [ApiController]
     public class CompaniesController : ControllerBase
     {
-        
         private readonly IServiceManager _service;
+        private readonly ISender _sender;
 
+        public CompaniesController(ISender sender)
+        {
+            _sender = sender;  
+        }
 
         public CompaniesController(IServiceManager service)
         {

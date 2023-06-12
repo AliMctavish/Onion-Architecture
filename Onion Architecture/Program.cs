@@ -1,7 +1,7 @@
 using Contracts;
 using NLog;
-using Onion_Architecture.ContextFactory;
 using Onion_Architecture.Extentions;
+using MediatR;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,13 +10,15 @@ var builder = WebApplication.CreateBuilder(args);
 LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(),
 "/nlog.config"));
 
-
-
 builder.Services.ConfigureSqlContext(builder.Configuration);
 
 builder.Services.ConfigureRepositoryManager();
 
 builder.Services.ConfigureServiceManager();
+
+builder.Services.AddAutoMapper(typeof(Program));
+
+builder.Services.AddMediatR(typeof(Application.AssemblyReference).Assembly);
 
 builder.Services.ConfigureLoggerService();
 
