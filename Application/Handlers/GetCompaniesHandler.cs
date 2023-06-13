@@ -3,7 +3,6 @@ using AutoMapper;
 using Contracts;
 using MediatR;
 using Shared.DataTransferObject.DataRequestDto;
-using System.Collections;
 
 namespace Application.Handlers
 {
@@ -20,8 +19,11 @@ namespace Application.Handlers
         public async Task<IEnumerable<CompanyDto>> Handle(GetCompaniesQuery request,
         CancellationToken cancellationToken)
         {
-            //var companies = await _repository.Company
-            throw new NotImplementedException();
+            var companies = await _repository.Company.GetAllCompaniesAsync(request.TrackChanges);
+
+            var companiesDto = _mapper.Map<IEnumerable<CompanyDto>>(companies);
+
+            return companiesDto;
         }
     }
 }

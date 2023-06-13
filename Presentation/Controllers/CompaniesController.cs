@@ -4,6 +4,7 @@ using Shared.DataReponseDto;
 using System.Net.Security;
 using Application;
 using MediatR;
+using Application.Queries;
 
 namespace Onion_Architecture.Presentation.Controllers
 {
@@ -16,25 +17,21 @@ namespace Onion_Architecture.Presentation.Controllers
 
         public CompaniesController(ISender sender)
         {
-            _sender = sender;  
-        }
-
-        public CompaniesController(IServiceManager service)
-        {
-            _service = service;
+            _sender = sender;
         }
 
         [HttpGet]
-        public IActionResult GetCompanies()
+        public async Task<IActionResult> GetCompanies()
         {
-                var companies = _service.CompanyService.GetAllCompanies(trackChanges:false);
+                var companies = await _sender.Send(new GetCompaniesQuery(false));
+
                 return Ok(companies);
         }
 
-        [HttpGet("{id:guid}", Name = "companyById")]
-        public IActionResult GetCompany(Guid id)
+        [HttpGet("{id:guid}")]
+        public async Task<IActionResult> GetCompany(Guid guid)
         {
-            var company = _service.CompanyService.GetCompany(id , false);
+            var company = await _sender.Send(new GetCompanyQurey(guid, false));
             return Ok(company);
         }
 

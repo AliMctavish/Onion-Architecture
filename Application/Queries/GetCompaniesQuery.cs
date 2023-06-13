@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Entities.Models;
+using MediatR;
 using Shared.DataTransferObject.DataRequestDto;
 
 namespace Application.Queries

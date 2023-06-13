@@ -17,9 +17,6 @@ namespace Application
             .ForMember(c => c.Address,
             opt => opt.MapFrom(x => string.Join(' ', x.Address,
             x.Country)));
-
-            CreateMap<Employee, EmployeeDto>().ForMember(e => e.Name, opt => opt.MapFrom(x => string.Join(' ', x.Name, x.Position)));
         }
     }
 }
-    

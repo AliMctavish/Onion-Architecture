@@ -27,9 +27,9 @@ namespace Service
 
         public IEnumerable<CompanyDto> GetAllCompanies(bool trackChanges)
         {
-                var companies = _repositoryManager.Company.GetAllCompanies(trackChanges);
-                var companyDto = companies.Adapt<List<CompanyDto>>();
-                return companyDto;
+                //var companies = _repositoryManager.Company.GetAllCompanies(trackChanges);
+                //var companyDto = companies.Adapt<List<CompanyDto>>();
+                return null;
         }
 
         public CompanyDto GetCompany(Guid companyId ,bool trackChanges)
