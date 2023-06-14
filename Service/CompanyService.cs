@@ -46,7 +46,7 @@ namespace Service
 
             _repositoryManager.Company.CreateCompany(createCompany);
 
-            _repositoryManager.Save();
+            _repositoryManager.SaveAsync();
 
             var mappedResult = createCompany.Adapt<CompanyDto>();
 

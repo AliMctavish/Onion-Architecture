@@ -24,6 +24,6 @@ namespace Application.Handlers
             var companiesDto = _mapper.Map<IEnumerable<CompanyDto>>(companies);
 
             return companiesDto;
-        }
+        } 
     }
 }

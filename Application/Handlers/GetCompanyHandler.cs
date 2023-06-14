@@ -25,7 +25,7 @@ namespace Application.Handlers
         
         async Task<CompanyDto> IRequestHandler<GetCompanyQurey, CompanyDto>.Handle(GetCompanyQurey request, CancellationToken cancellationToken)
         {
-            var company= await _repository.Company.GetCompany(request.guid, request.trackChanges);
+            var company= await _repository.Company.GetCompanyAsync(request.guid, request.trackChanges);
 
             if (company is null)
                 throw new CompanyNotFoundException(request.guid);

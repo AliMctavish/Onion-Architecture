@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using Entities.Models;
+using Shared.DataReponseDto;
+using Shared.DataTransferObject.DataReponseDto;
 using Shared.DataTransferObject.DataRequestDto;
 using System;
 using System.Collections.Generic;
@@ -17,6 +19,14 @@ namespace Application
             .ForMember(c => c.Address,
             opt => opt.MapFrom(x => string.Join(' ', x.Address,
             x.Country)));
+
+            CreateMap<CreateCompanyDto, Company>();
+
+            CreateMap<CreateEmployeeDto, Employee>();
+
+            CreateMap<Employee,EmployeeDto> ();
+
+            //CreateMap<CreateEmployeeDto, EmployeeDto>();
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Net.Security;
 using Application;
 using MediatR;
 using Application.Queries;
+using Application.Commands;
 
 namespace Onion_Architecture.Presentation.Controllers
 {
@@ -12,6 +13,7 @@ namespace Onion_Architecture.Presentation.Controllers
     [ApiController]
     public class CompaniesController : ControllerBase
     {
+
         private readonly IServiceManager _service;
         private readonly ISender _sender;
 
@@ -23,9 +25,8 @@ namespace Onion_Architecture.Presentation.Controllers
         [HttpGet]
         public async Task<IActionResult> GetCompanies()
         {
-                var companies = await _sender.Send(new GetCompaniesQuery(false));
-
-                return Ok(companies);
+            var companies = await _sender.Send(new GetCompaniesQuery(false));
+            return Ok(companies);
         }
 
         [HttpGet("{id:guid}")]
@@ -36,16 +37,14 @@ namespace Onion_Architecture.Presentation.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateCompany([FromBody] CreateCompanyDto createCompany)
+        public async Task<IActionResult> CreateCompany([FromBody] CreateCompanyDto createCompany)
         {
             if (createCompany is null)
                 return BadRequest("company for creation dto object is null");
 
+            var company = await _sender.Send(new CreateCompanyCommand(createCompany));
 
-            var result = _service.CompanyService.CreateCompany(createCompany);
-
-
-            return CreatedAtRoute("companyById" , new { id = result.Id } , result );
+            return Ok(company);
         }
 
     }

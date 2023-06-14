@@ -3,11 +3,6 @@ using AutoMapper;
 using Contracts;
 using MediatR;
 using Shared.DataTransferObject.DataRequestDto;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Handlers
 {
@@ -15,9 +10,10 @@ namespace Application.Handlers
     {
         private readonly IRepositoryManager _repository;
         private readonly IMapper _mapper;
-        public GetEmployeesHandler(IRepositoryManager repository) 
+        public GetEmployeesHandler(IRepositoryManager repository , IMapper mapper) 
         {
             _repository = repository;
+            _mapper = mapper;
         }    
         public async Task<IEnumerable<EmployeeDto>>  Handle(GetEmployeesQuery request, CancellationToken cancellationToken)
         {

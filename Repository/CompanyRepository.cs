@@ -22,10 +22,10 @@ namespace Repository
             return result.ToList();
         }
 
-        public async Task<Company> GetCompany(Guid companyId, bool trackChanges)
+        public async Task<Company> GetCompanyAsync(Guid companyId, bool trackChanges)
         {
-            var result = await FindByCondition(c => c.Id.Equals(companyId), trackChanges).SingleOrDefaultAsync();
-            return result;
+            var company = await FindByCondition(c => c.Id.Equals(companyId), trackChanges).SingleOrDefaultAsync();
+            return company;
         }
 
 

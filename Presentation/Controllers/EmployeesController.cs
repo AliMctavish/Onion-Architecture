@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Application.Commands;
+using Application.Queries;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using Service.Contracts;
 using Shared.DataTransferObject;
 using Shared.DataTransferObject.DataReponseDto;
@@ -14,37 +17,36 @@ namespace Onion_Architecture.Presentation.Controllers
     [ApiController]
     public class EmployeesController : ControllerBase
     {
-        IServiceManager _serviceManager;
+        private readonly ISender _sender;
 
-        public EmployeesController(IServiceManager serviceManager)
+        public EmployeesController(ISender sender)
         {
-            _serviceManager = serviceManager;
+            _sender = sender;
         }
 
         [HttpGet]
-        public IActionResult GetEmployees()
+        public async Task<IActionResult> GetEmployees()
         {
-            var employees = _serviceManager.EmployeeService.GetAllEmployees(false);
+            var employees = await _sender.Send(new GetEmployeesQuery(false));
             return Ok(employees);
         }
 
         [HttpGet("{id:guid}" , Name = "employeeById")]
-        public IActionResult GetEmployee(Guid id)
+        public async Task<IActionResult> GetEmployee(Guid id)
         {
-            var employee = _serviceManager.EmployeeService.GetEmployee(id, false);
-
+            var employee = await _sender.Send(new GetEmployeeQuery(id, false));
             return Ok(employee);
         }
 
         [HttpPost]
-        public IActionResult CreateEmployee(Guid companyId , CreateEmployeeDto createEmployeeDto)
+        public async Task<IActionResult> CreateEmployee(Guid companyId , CreateEmployeeDto createEmployeeDto)
         {
             if (createEmployeeDto is null)
                 return BadRequest("please make sure that you are sane !");
 
-            _serviceManager.EmployeeService.CreateEmployee(companyId, createEmployeeDto, false);
+            var employee = await _sender.Send(new CreateEmployeeCommand(companyId, createEmployeeDto));
 
-            return Ok();
+            return Ok(employee);
         }
     }
 }

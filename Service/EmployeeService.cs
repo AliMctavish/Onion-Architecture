@@ -27,14 +27,14 @@ namespace Service
 
         public IEnumerable<EmployeeDto> GetAllEmployees(bool trackChanges)
         {
-                var employees = _repositoryManager.Employee.GetAllEmployees(trackChanges).OrderBy(e=>e.Name).ToList();
+                var employees = _repositoryManager.Employee.GetAllEmployeesAsync(trackChanges).Result.OrderBy(e=>e.Name).ToList();
                 var employeesDto = employees.Adapt<List<EmployeeDto>>();
                 return employeesDto;
         }
 
         public EmployeeDto GetEmployee(Guid id,bool trackChanges)
         {
-            var employee = _repositoryManager.Employee.GetEmployee(id, trackChanges);
+            var employee = _repositoryManager.Employee.GetEmployeeAsync(id, trackChanges);
 
             if (employee is null)
                 throw new EmployeeNotFoundException(id);
@@ -49,21 +49,18 @@ namespace Service
         {
             var company = _repositoryManager.Company.GetCompany(companyId, trackChanges);
 
-
             if (company is null)
                 throw new CompanyNotFoundException(companyId);
-
+            
             var employee = employeeDto.Adapt<Employee>();    
 
             _repositoryManager.Employee.CreateEmployee(companyId,employee);
 
-            _repositoryManager.Save();
+            _repositoryManager.SaveAsync();
 
             var result = employee.Adapt<EmployeeDto>();
 
             return result;
-
         }
-
     }
 }
